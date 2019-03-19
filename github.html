@@ -33,6 +33,7 @@
             padding:4px 4px 0 4px;
         }
         #ProjectHeader{
+            padding-left:10px;
             display:inline-block;
             background-color: #eee;
             border-bottom:1px solid #999;
@@ -56,6 +57,14 @@
         #ActiveProjectNav{
             color:#222 !important;
             background-color:#fff;
+            border: solid #999;
+            border-radius:2px 2px 0 0;
+            border-width: 2px 1px 1px 1px;
+            border-bottom-color:#fff;
+            border-top-color:#ff5500;
+            border-collapse:unset;
+            overflow:visible;
+            height:110%;
         }
         hr{
             background-color:#fff;
@@ -80,6 +89,10 @@
             width:80px;
             padding-right:10px;
         }
+        .UserLogoColumn img{
+            width:48px;
+            height:48px;
+        }
         .DisplayName{
             text-decoration:none;
             color:#6666ff;
@@ -87,16 +100,26 @@
         .UserName{
             color:#444;
         }
-        #TeamTable, #TeamTable tr{
-            border:1px solid #aaa;
-            border-collapse: collapse;
+        #TeamTable{
             width:100%;
+            border-collapse: collapse;
+        }
+        #TeamTable tbody tr{
+            border:solid #aaa;
+            border-width: 1px 0 1px 0;
+        }
+        #TeamTable tbody tr:last-child{
+            border:solid #aaa;
+            border-width: 1px 0 0 0;
         }
         #TeamTable img {
             float:right;
         }
         #TeamTableContainer{
+            border:1px solid #aaa;
             margin:14px;
+            border-radius: 5px;
+            overflow: hidden;
         }
         #LeftFooterNav{
             padding:10px;
@@ -150,27 +173,31 @@
         <br>
         <div id="TeamTableContainer">
             <table id="TeamTable">
-                <tr id="TableHeader">
-                    <th colspan="4">Codeup's dev team</th>
-                </tr>
-                <tr class="TeamMemberRow">
-                    <td class="UserLogoColumn"><img src="img/48x48.svg" alt="User Logo"></td>
-                    <td class="UserNames"><a href="#" class="DisplayName">Kent Beck</a><br><span class="UserName">KentBeck</span></td>
-                    <td class="UserType">Member</td>
-                    <td class="TeamCount">1 team</td>
-                </tr>
-                <tr class="TeamMemberRow">
-                    <td class="UserLogoColumn"><img src="img/codeup-arrow.png"  width="48px" height="48px" alt="User Logo"></td>
-                    <td class="UserNames"><a href="#" class="DisplayName">Codeup Instruction Staff</a><br><span class="UserName">CodeupInstructors</span></td>
-                    <td class="UserType">Member</td>
-                    <td class="TeamCount">1 team</td>
-                </tr>
-                <tr class="TeamMemberRow">
-                    <td class="UserLogoColumn"><img src="img/48x48.svg" alt="User Logo"></td>
-                    <td class="UserNames"><a href="#" class="DisplayName">Martin Fowler</a><br><span class="UserName"></span></td>
-                    <td class="UserType">Member</td>
-                    <td class="TeamCount">0 teams</td>
-                </tr>
+                <thead>
+                    <tr id="TableHeader">
+                        <th colspan="4">Codeup's dev team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="TeamMemberRow">
+                        <td class="UserLogoColumn"><img src="https://avatars0.githubusercontent.com/u/46154?s=460&v=4" alt="User Logo"></td>
+                        <td class="UserNames"><a href="#" class="DisplayName">Kent Beck</a><br><span class="UserName">KentBeck</span></td>
+                        <td class="UserType">Member</td>
+                        <td class="TeamCount">1 team</td>
+                    </tr>
+                    <tr class="TeamMemberRow">
+                        <td class="UserLogoColumn"><img src="https://avatars3.githubusercontent.com/u/16561971?s=460&v=4" alt="User Logo"></td>
+                        <td class="UserNames"><a href="#" class="DisplayName">Codeup Instruction Staff</a><br><span class="UserName">CodeupInstructors</span></td>
+                        <td class="UserType">Member</td>
+                        <td class="TeamCount">1 team</td>
+                    </tr>
+                    <tr class="TeamMemberRow">
+                        <td class="UserLogoColumn"><img src="https://avatars1.githubusercontent.com/u/120859?s=460&v=4" alt="User Logo"></td>
+                        <td class="UserNames"><a href="#" class="DisplayName">Martin Fowler</a><br><span class="UserName"></span></td>
+                        <td class="UserType">Member</td>
+                        <td class="TeamCount">0 teams</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </main>
