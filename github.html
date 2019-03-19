@@ -6,6 +6,7 @@
     <style>
         body{
             margin:0px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         }
         #WebsiteHeader{
             padding:10px;
@@ -17,40 +18,54 @@
         }
         #WebsiteHeader nav img{
             vertical-align: middle;
+            margin-right:10px;
         }
         #WebsiteHeader nav a{
             color:#aaa;
             text-decoration:none;
+            font-size: 14px;
             margin-left:6px;
             margin-right:6px;
             display: inline-block;
             vertical-align: middle;
         }
+        #PHeaderContainer{
+            padding:4px 4px 0 4px;
+        }
         #ProjectHeader{
             display:inline-block;
             background-color: #eee;
             border-bottom:1px solid #999;
-            padding:4px 4px 0 4px;
             width:100%;
         }
-        #ProjectHeader img,#ProjectHeader h2{
+        #ProjectHeader img,#ProjectHeader h3{
             display: inline-block;
             vertical-align: middle;
+            font-weight: normal;
         }
         #ProjectNav nav a:hover{
             background-color:#fff;
         }
         #ProjectNav nav a{
             text-decoration:none;
-            color:black;
+            color:#666;
             padding-left:10px;
             padding-right:10px;
             margin:0px;
         }
+        #ActiveProjectNav{
+            color:#222 !important;
+            background-color:#fff;
+        }
+        hr{
+            background-color:#fff;
+            border-color:#fff;
+            color:#fff;
+        }
         #TableHeader th{
-            background-color:#ccc;
+            background-color:#e0e0e0;
             text-align:left;
-            padding:10px;
+            padding:10px 0 20px 30px;
         }
         .TeamMemberRow{
             height:80px;
@@ -62,7 +77,8 @@
             width:100px;
         }
         .UserLogoColumn{
-            width:10%;
+            width:80px;
+            padding-right:10px;
         }
         .DisplayName{
             text-decoration:none;
@@ -80,7 +96,7 @@
             float:right;
         }
         #TeamTableContainer{
-            padding:10px;
+            margin:14px;
         }
         #LeftFooterNav{
             padding:10px;
@@ -93,10 +109,12 @@
             float:right;
         }
         footer{
-            margin:10px;
             position:absolute;
             bottom:0;
             width:100%;
+        }
+        #FooterContainer{
+            padding:14px;
         }
         footer nav > *{
             padding: 0 10px 0 0;
@@ -106,7 +124,7 @@
 <body>
     <header id="WebsiteHeader">
         <nav>
-            <img src="img/30x30.svg" alt="GitHub Logo">
+            <img src="img/github.png" width="30px" height="30px" alt="GitHub Logo">
             <a href="#">Pull requests</a>
             <a href="#">Issues</a>
             <a href="#">Marketplace</a>
@@ -115,16 +133,18 @@
     </header>
     <main>
         <div id="ProjectHeader">
-            <img src="img/30x30.svg" alt="Project Logo"/>
-            <h2>Codeup</h2>
-            <div id="ProjectNav">
-                <nav>
-                    <a href="#">Repositories</a>
-                    <a href="#">People</a>
-                    <a href="#">Teams</a>
-                    <a href="#">Projects</a>
-                    <a href="#">Settings</a>
-                </nav>
+            <div id="PHeaderContainer">
+                <img src="img/codeup-arrow.png" width="30px" height="30px" alt="Project Logo"/>
+                <h3>Codeup</h3>
+                <div id="ProjectNav">
+                    <nav>
+                        <a href="#">Repositories</a>
+                        <a href="#" id="ActiveProjectNav">People</a>
+                        <a href="#">Teams</a>
+                        <a href="#">Projects</a>
+                        <a href="#">Settings</a>
+                    </nav>
+                </div>
             </div>
         </div>
         <br>
@@ -140,7 +160,7 @@
                     <td class="TeamCount">1 team</td>
                 </tr>
                 <tr class="TeamMemberRow">
-                    <td class="UserLogoColumn"><img src="img/48x48.svg" alt="User Logo"></td>
+                    <td class="UserLogoColumn"><img src="img/codeup-arrow.png"  width="48px" height="48px" alt="User Logo"></td>
                     <td class="UserNames"><a href="#" class="DisplayName">Codeup Instruction Staff</a><br><span class="UserName">CodeupInstructors</span></td>
                     <td class="UserType">Member</td>
                     <td class="TeamCount">1 team</td>
@@ -155,25 +175,27 @@
         </div>
     </main>
     <footer>
-        <hr>
-        <br>
-        <br>
-        <nav id="LeftFooterNav">
-            <span>&copy; 2018 GitHub, Inc.</span>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
-            <a href="#">Security</a>
-            <a href="#">Status</a>
-            <a href="#">Help</a>
-        </nav>
-        <nav id="RightFooterNav">
-            <a href="#">Contact GitHub</a>
-            <a href="#">API</a>
-            <a href="#">Training</a>
-            <a href="#">Shop</a>
-            <a href="#">Blog</a>
-            <a href="#">About</a>
-        </nav>
+        <div id="FooterContainer">
+            <hr>
+            <br>
+            <br>
+            <nav id="LeftFooterNav">
+                <span>&copy; 2018 GitHub, Inc.</span>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Security</a>
+                <a href="#">Status</a>
+                <a href="#">Help</a>
+            </nav>
+            <nav id="RightFooterNav">
+                <a href="#">Contact GitHub</a>
+                <a href="#">API</a>
+                <a href="#">Training</a>
+                <a href="#">Shop</a>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+            </nav>
+        </div>
     </footer>
 </body>
 </html>
