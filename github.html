@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Github Teams</title>
+    <style>
+        body{
+            margin:0px;
+        }
+        #WebsiteHeader{
+            padding:10px;
+            background-color:#222;
+            color:#eee;
+        }
+        #WebsiteHeader nav{
+            display:inline-block;
+        }
+        #WebsiteHeader nav img{
+            vertical-align: middle;
+        }
+        #WebsiteHeader nav a{
+            color:#aaa;
+            text-decoration:none;
+            margin-left:6px;
+            margin-right:6px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #projectHeader{
+            background-color: #eee;
+            border-bottom:1px solid #999;
+            padding:4px;
+        }
+        #projectNav nav a{
+            text-decoration:none;
+            color:black;
+            margin-left:10px;
+            margin-right:10px;
+        }
+
+        #teamTable, #teamTable tr{
+            border:1px solid;
+            border-collapse: collapse;
+            width:100%;
+        }
+        #teamTable img {
+            float:right;
+        }
+        #teamTableContainer{
+
+            padding:10px;
+        }
+        #LeftFooterNav{
+            padding:10px;
+            position:relative;
+            float:left;
+        }
+        #RightFooterNav{
+            padding:10px;
+            position:relative;
+            float:right;
+        }
+        footer{
+            position:absolute;
+            bottom:0;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+    <header id="WebsiteHeader">
+        <nav>
+            <img src="img/30x30.svg" alt="githubLogo">
+            <a href="#">Pull requests</a>
+            <a href="#">Issues</a>
+            <a href="#">Marketplace</a>
+            <a href="#">Explore</a>
+        </nav>
+    </header>
+    <main>
+        <div id="projectHeader">
+            <img src="img/30x30.svg" alt="Project Logo"/>Codeup
+            <div id="projectNav">
+                <nav>
+                    <a href="#">Repositories</a>
+                    <a href="#">People</a>
+                    <a href="#">Teams</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Settings</a>
+                </nav>
+            </div>
+        </div>
+        <br>
+        <div id="teamTableContainer">
+            <table id="teamTable">
+                <tr>
+                    <th>Codeup's dev team</th>
+                </tr>
+                <tr class="TeamMemberRow">
+                    <td><img src="img/48x48.svg" alt="UserLogo"></td>
+                    <td><a href="#" id="DisplayName">Kent Beck</a><p id="UserName">KentBeck</p></td>
+                    <td>Member</td>
+                    <td>1 team</td>
+                </tr>
+                <tr class="TeamMemberRow">
+                    <td><img src="img/48x48.svg" alt="UserLogo"></td>
+                    <td><a href="#" id="DisplayName">Codeup Instruction Staff</a><p id="UserName">CodeupInstructors</p></td>
+                    <td>Member</td>
+                    <td>1 team</td>
+                </tr>
+                <tr class="TeamMemberRow">
+                    <td><img src="img/48x48.svg" alt="UserLogo"></td>
+                    <td><a href="#" id="DisplayName">Martin Fowler</a><p id="UserName"></p></td>
+                    <td>Member</td>
+                    <td>1 team</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <hr>
+        <nav id="LeftFooterNav">
+            <span>&copy; 2018 GitHub, Inc.</span>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <a href="#">Security</a>
+            <a href="#">Status</a>
+            <a href="#">Help</a>
+        </nav>
+        <nav id="RightFooterNav">
+            <a href="#">Contact GitHub</a>
+            <a href="#">API</a>
+            <a href="#">Training</a>
+            <a href="#">Shop</a>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+        </nav>
+    </footer>
+</body>
+</html>
