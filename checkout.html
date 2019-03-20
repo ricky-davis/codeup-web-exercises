@@ -6,41 +6,37 @@
     </head>
     <body>
         <form method="POST" id="credit_card_form" action="https://request-inspector.glitch.me">
-            <h3>Credit Card Information</h3>
-            <label for="name">Name as shown on card</label>
-            <input type="number" required name="name" id="name">
-            <br>
-            <label for="cardType">Card Type</label>
-            <select required name="cardType" id="cardType">
-                <option value="visa">Visa</option>
-                <option value="mastercard">MasterCard</option>
-                <option value="discover">Discover</option>
-            </select>
-            <br>
-            <label for="ccNumber">Credit Card #</label>
-            <input type="number" required name="ccNumber" id="ccNumber">
-            <br>
-            <label for="expiration">Expiration Date</label>
-            <input type="text" required name="expiration" id="expiration" placeholder="mm/yyyy">
-            <br>
-            <label for="CVV">CVV</label>
-            <input type="number" required name="CVV" id="CVV">
-            <br>
-            <h3>Billing Address</h3>
-            <label for="street">Street Address</label>
-            <input type="text" required name="street" id="street">
-            <br>
-            <label for="city">City</label>
-            <input type="text" required name="city" id="city">
-            <br>
-            <label for="state">State</label>
-            <input type="text" required name="state" id="state">
-            <br>
-            <label for="zip">ZipCode</label>
-            <input type="number" required name="zip" id="zip">
+            <fieldset>
+                <legend>Credit Card Information</legend>
+                <label for="name">Name as shown on card</label><br>
+                <input type="text" required="required" name="name" id="name"><br>
+                <label for="cardType">Card Type</label><br>
+                <select required="required" name="cardType" id="cardType">
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">MasterCard</option>
+                    <option value="discover">Discover</option>
+                </select><br>
+                <label for="ccNumber">Credit Card #</label><br>
+                <input type="number" required="required" name="ccNumber" id="ccNumber"><br>
+                <label for="expiration">Expiration Date</label><br>
+                <input type="text" required="required" name="expiration" id="expiration" placeholder="mm/yyyy"><br>
+                <label for="CVV">CVV</label><br>
+                <input type="number" required="required" name="CVV" id="CVV">
+            </fieldset>
+            <fieldset>
+                <legend>Billing Address</legend>
+                <label for="address">Address</label><br>
+                <input type="text" required="required" name="address" id="address"/><br>
+                <label for="city">City</label><br>
+                <input type="text" required="required" name="city" id="city"/><br>
+                <label for="state">State</label><br>
+                <input type="text" required="required" name="state" id="state"/><br>
+                <label for="zip">ZipCode</label><br>
+                <input type="number" required="required" name="zip" id="zip"/><br>
+            </fieldset>
             <br>
             <label for="rememberPayInfo">Keep this credit card on file for future transactions</label>
-            <input type="checkbox" checked name="rememberPayInfo" id="rememberPayInfo">
+            <input type="checkbox" checked="checked" name="rememberPayInfo" id="rememberPayInfo">
             <br>
             <button type="submit">Buy Now!</button>
         </form>
