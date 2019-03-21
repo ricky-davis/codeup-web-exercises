@@ -1,4 +1,51 @@
+
+body{
+    background-color:#eee;
+    background-image:url(../img/what-the-hex.png);
+    color:#222;
+    font-family:Roboto;
+}
+h2{
+    color: #222;
+    text-decoration: underline;
+}
+ul{
+    list-style: square;
+}
+table{
+    border: 1px solid;
+    font-size:14px;
+    padding:6px;
+    border-collapse: collapse;
+}
+td{
+    border:solid;
+    border-width:1px 0 1px 0;
+    padding:4px;
+}
+img{
+    width:500px;
+    height:300px;
+}
+thead{
+    background-color:#aaa;
+}
+a:active{
+    color:red;
+}
+a:hover{
+    color:green;
+}
+a:link{
+    color:purple;
+}
+a:visited{
+    color:blue;
+}
 .fancy-header {
     color: purple; /* single line comment */
     text-decoration: underline;
+}
+#header{
+    text-align:center
 }
