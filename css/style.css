@@ -3,17 +3,28 @@ body{
     background-color:#eee;
     background-image:url(../img/what-the-hex.png);
     color:#222;
-    font-family:Roboto;
+    font-family: Eczar;
+}
+main{
+    text-align:center;
 }
 h2{
     color: #222;
     text-decoration: underline;
 }
-ul{
-    list-style: square;
+legend{
+    font-size:20px;
+    font-weight:bold;
+
+}
+ul,ol{
+    margin-top:4px;
+}
+li{
+    list-style: none;
 }
 table{
-    border: 1px solid;
+    width:100%;
     font-size:14px;
     padding:6px;
     border-collapse: collapse;
@@ -23,12 +34,18 @@ td{
     border-width:1px 0 1px 0;
     padding:4px;
 }
+tr{
+    background-color:#9e9;
+}
+tr:nth-child(2n){
+     background-color:#9c9;
+ }
 img{
     width:500px;
     height:300px;
 }
-thead{
-    background-color:#aaa;
+th{
+    background-color:#99c;
 }
 a:active{
     color:red;
@@ -42,9 +59,57 @@ a:link{
 a:visited{
     color:blue;
 }
+footer{
+    text-align:center;
+    bottom:0;
+}
+footer h3{
+    margin-top:0;
+}
+#productListing table{
+    margin:auto;
+    text-align:center;
+}
 .fancy-header {
     color: purple; /* single line comment */
-    text-decoration: underline;
+    text-decoration: none;
+}
+#tableContainer{
+    border: 1px solid black;
+    border-radius:20px;
+    overflow: hidden;
+    margin:auto;
+    width:40%;
+}
+#wrapper{
+    margin:1em auto;
+    width:80%;
+    border:1px solid black;
+    border-radius:3em;
+    background-color:rgba(206,223,254,0.3);
+}
+#companyVision{
+    height:60px;
+    overflow:hidden;
+
+    /*Animation*/
+    -webkit-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease;
+}
+#companyVision:hover{
+    height:700px;
+}
+#first-section{}
+#coreValues{
+    float: left;
+    padding-left:3em;
+}
+#ourProcess{
+    float: right;
+    padding-right:3em;
 }
 #header{
     text-align:center
