@@ -74,6 +74,7 @@
         margin-right:1em;
         display:inline-block;
     }
+
     /*Remove the hidden items*/
     .hidden-on-desktop{
         display:none;
@@ -124,6 +125,7 @@ footer li{
 .header-img img {
     width: 100%;
 }
+
 
 .sub-section{
     font-style: italic;
