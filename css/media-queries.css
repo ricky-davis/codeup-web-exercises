@@ -1,8 +1,35 @@
+/*Tiny View*/
+@media screen and (max-width:300px){
+    footer p{
+        width:11em;
+    }
+}
+/*Small View*/
+@media screen and (max-width:420px) {
+
+    /*#social-media-links{*/
+    /*    width:50px;*/
+    /*    position:relative;*/
+    /*    top:-100px;*/
+    /*}*/
+    #social-media-links{
+        position:relative;
+        top:-100px;
+    }
+    footer{
+        height:50px;
+    }
+}
 /*Mobile View*/
-@media screen and (max-width:991px) {
+@media screen and (max-width:499px) {
     body{
         background-color:dodgerblue;
     }
+    h1{
+        text-align:center;
+        margin-top:0.25em;
+    }
+    /*"Skip to main content" bar*/
     .alert-info{
         background-color:greenyellow;
         border: 1px solid gray;
@@ -13,10 +40,8 @@
     .alert-info a{
         text-decoration: none;
     }
-    h1{
-        text-align:center;
-        margin-top:0.25em;
-    }
+
+    /*Nav bar*/
     .nav-links{
         padding:0;
     }
@@ -26,26 +51,100 @@
         text-align:center;
         padding:1em;
     }
-    #social-media-links{
-        display:none;
-    }
 }
 
 /*Desktop View*/
-@media screen and (min-width:992px) {
+@media screen and (min-width:500px) {
     body{
         background-color:pink;
+     }
+    h1{
+        margin-top:0.5em;
+        margin-bottom:1em;
+        font-size:3em;
+        float:left;
+    }
+    /*Nav Bar*/
+    nav{
+        margin-top:2em;
+        margin-bottom:1em;
+        float:right;
+    }
+    .nav-links li{
+        margin-right:1em;
+        display:inline-block;
+    }
+    /*Remove the hidden items*/
+    .hidden-on-desktop{
+        display:none;
+    }
+
+    /*Giant image in center*/
+    .header-img{
+        clear:both;
+        width: 100%;
+        /*max-width:1264px;*/
+    }
+    /*main text block*/
+    .main{
+        width:50%;
+        display:inline-block;
+    }
+    /*sub section text block*/
+    .sub-section{
+        width:40%;
+        float:right;
+        display:inline-block;
     }
 }
+
+/*Below this point is universal styles,
+regardless of viewport size*/
+
+
 footer{
     margin-top:5em;
+    display:inline-block;
+    width:100%;
+    clear:both;
 }
+footer p{
+    display:inline-block;
+}
+footer li{
+    list-style:none;
+    float:right;
+    margin-right:1em;
+}
+
+
 .nav-links{
     list-style: none;
 }
 .header-img img {
     width: 100%;
 }
+
 .sub-section{
     font-style: italic;
+}
+
+
+
+#social-media-links{
+    display:inline-block;
+    float:right;
+}
+#social-media-links ul{
+    margin:0;
+    padding:0;
+}
+#social-media-links li{
+    width:60px;
+    height:60px;
+    text-align:center;
+}
+#social-media-links img{
+    width:40px;
+    height:40px;
 }
