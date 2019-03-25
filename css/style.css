@@ -4,14 +4,15 @@
     --main-link-color: #848487;
     --light-bg: #FFF;
     --separator-color: #DDD;
+    font:16px Eczar;
 }
+
 body{
     box-sizing:border-box;
     background-color:#eee;
     background-image:url(../img/what-the-hex.png);
     color:#222;
     margin:0;
-    font-family: Eczar;
 }
 main{
     text-align:center;
@@ -52,10 +53,6 @@ tr{
 tr:nth-child(2n){
      background-color:#9c9;
  }
-#companyVision img{
-    width:500px;
-    height:300px;
-}
 th{
     background-color:#99c;
 }
@@ -100,29 +97,26 @@ footer h3{
     margin:auto;
     width:40%;
 }
-#companyVision{
-    height:60px;
-    overflow:hidden;
-
-    /*Animation*/
-    -webkit-transition: height 1s ease;
-    -moz-transition: height 1s ease;
-    -o-transition: height 1s ease;
-    -ms-transition: height 1s ease;
-    transition: height 1s ease;
+#first-section{
+    display:flex;
+    text-align:center;
+    justify-content: space-around;
 }
-#companyVision:hover{
-    height:700px;
-}
-#first-section{}
 #coreValues{
-    float: left;
-    padding-left:3em;
+    text-align:left;
 }
-#ourProcess{
-    float: right;
-    padding-right:3em;
+#2020Vision{
+    text-align:left;
+
 }
+/*#coreValues{*/
+/*    float: left;*/
+/*    padding-left:3em;*/
+/*}*/
+/*#ourProcess{*/
+/*    float: right;*/
+/*    padding-right:3em;*/
+/*}*/
 .text-muted {
     color: var(--main-link-color);
 }
@@ -130,4 +124,47 @@ footer h3{
     position:relative;
     top:-1.5em;
     padding-left:60px;
+}
+@media screen and (min-width:500px) {
+    #companyVision{
+        height:60px;
+        overflow:hidden;
+
+        /*Animation*/
+        -webkit-transition: height 1s ease;
+        -moz-transition: height 1s ease;
+        -o-transition: height 1s ease;
+        -ms-transition: height 1s ease;
+        transition: height 1s ease;
+    }
+
+    #companyVision img{
+        width:400px;
+        height:300px;
+    }
+    #companyVision:hover{
+        height:700px;
+    }
+}
+@media screen and (max-width:499px) {
+    small.slogan{
+        display:none;
+    }
+    header + hr{
+        clear:both;
+    }
+    #companyVision img{
+        width:40%;
+        height:30%;
+    }
+    #companyVision{
+        height:100%;
+    }
+    #header{
+        display:flex;
+        justify-content: center;
+    }
+    #mainHeader{
+        width:100%;
+    }
 }
