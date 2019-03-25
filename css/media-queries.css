@@ -1,0 +1,51 @@
+/*Mobile View*/
+@media screen and (max-width:991px) {
+    body{
+        background-color:dodgerblue;
+    }
+    .alert-info{
+        background-color:greenyellow;
+        border: 1px solid gray;
+        text-align:center;
+        width:auto;
+        padding:1em;
+    }
+    .alert-info a{
+        text-decoration: none;
+    }
+    h1{
+        text-align:center;
+        margin-top:0.25em;
+    }
+    .nav-links{
+        padding:0;
+    }
+    .nav-links li{
+        background-color:greenyellow;
+        margin:0.5em;
+        text-align:center;
+        padding:1em;
+    }
+    #social-media-links{
+        display:none;
+    }
+}
+
+/*Desktop View*/
+@media screen and (min-width:992px) {
+    body{
+        background-color:pink;
+    }
+}
+footer{
+    margin-top:5em;
+}
+.nav-links{
+    list-style: none;
+}
+.header-img img {
+    width: 100%;
+}
+.sub-section{
+    font-style: italic;
+}
