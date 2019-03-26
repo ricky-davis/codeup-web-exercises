@@ -102,7 +102,9 @@
 /*Below this point is universal styles,
 regardless of viewport size*/
 
-
+*{
+    transition: all 1s ease;
+}
 footer{
     margin-top:5em;
     display:inline-block;
