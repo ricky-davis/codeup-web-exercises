@@ -21,13 +21,49 @@
     padding: 10px;
     border: 1px solid black;
 }
+.column.eleven-twelfths {
+    width: 91.66%;
+    background-color:violet;
+}
+.column.seven-twelfths {
+    width: 58.33%;
+    background-color:violet;
+}
+.column.five-twelfths {
+    width: 41.66%;
+    background-color:violet;
+}
+.column.one-twelfth {
+    width: 8.33%;
+    background-color:violet;
+}
+.column.seven-eighths {
+    width: 87.5%;
+    background-color:indigo;
+}
+.column.five-eighths {
+    width: 62.5%;
+    background-color:indigo;
+}
+.column.three-eighths {
+    width: 37.5%;
+    background-color:indigo;
+}
 .column.one-eighth {
     width: 12.5%;
-    background-color:red;
+    background-color:indigo;
+}
+.column.five-sixths {
+    width: 83.33%;
+    background-color:green;
 }
 .column.one-sixth {
     width: 16.66%;
-    background-color:orange;
+    background-color:green;
+}
+.column.three-fourths {
+    width: 75%;
+    background-color:yellow;
 }
 .column.one-fourth {
     width: 25%;
@@ -35,11 +71,80 @@
 }
 .column.one-third {
     width: 33.33%;
-    background-color:green;
+    background-color:orange;
+}
+.column.two-thirds {
+    width: 66.66%;
+    background-color:orangered;
 }
 .column.one-half {
     width: 50%;
+    background-color:red;
+}
+
+
+
+
+
+.column.offset-eleven-twelfths {
+    margin-left: 91.66%;
+    background-color:violet;
+}
+.column.offset-seven-twelfths {
+    margin-left: 58.33%;
+    background-color:violet;
+}
+.column.offset-five-twelfths {
+    margin-left: 41.66%;
+    background-color:violet;
+}
+.column.offset-one-twelfth {
+    margin-left: 8.33%;
+    background-color:violet;
+}
+.column.offset-seven-eighths {
+    margin-left: 87.5%;
     background-color:indigo;
+}
+.column.offset-five-eighths {
+    margin-left: 62.5%;
+    background-color:indigo;
+}
+.column.offset-three-eighths {
+    margin-left: 37.5%;
+    background-color:indigo;
+}
+.column.offset-one-eighth {
+    margin-left: 12.5%;
+    background-color:indigo;
+}
+.column.offset-five-sixths {
+    margin-left: 83.33%;
+    background-color:green;
+}
+.column.offset-one-sixth {
+    margin-left: 16.66%;
+    background-color:green;
+}
+.column.offset-three-fourths {
+    margin-left: 75%;
+    background-color:yellow;
+}
+.column.offset-one-fourth {
+    margin-left: 25%;
+    background-color:yellow;
+}
+.column.offset-one-third {
+    margin-left: 33.33%;
+    background-color:orange;
+}
+.column.offset-two-thirds {
+    margin-left: 66.66%;
+    background-color:orangered;
+}
+.column.offset-one-half {
+    margin-left: 50%;
+    background-color:red;
 }
 
 @media screen and (max-width: 768px) {
