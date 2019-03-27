@@ -1,23 +1,26 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
+        <!--Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
+
+        <!--Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+        <!--Custom CSS-->
         <link rel="stylesheet" href="css/custom.css">
         <title>Order Pizza!</title>
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Pizza world</a>
+    <body id="body">
+
+        <!--Nav Bar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
+            <a class="navbar-brand" href="#">Ricky's Pizza</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
@@ -28,35 +31,43 @@
                     </li>
                 </ul>
                 <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Zip code">
-                    <button class="btn btn-outline-secondary" type="submit">Search stores near you!</button>
+                    <input class="form-control mr-sm-2" id="ZipCode" type="search" placeholder="Zip Code" aria-label="Zip code">
+                    <button class="btn btn-outline-secondary" type="submit" onclick="getLatLong();">Search stores near you!</button>
                 </form>
                 <form class="form-inline ml-auto">
-                    <button class="btn text-muted my-2 my-sm-0" type="submit"><i class="fa fa-user mx-1"></i>Sign up</button>
+                    <a id="SignUpBtn" class="btn text-muted my-2 my-sm-0 shake"><i class="fa fa-user mx-1"></i>Sign up</a>
                 </form>
             </div>
         </nav>
+
+        <!--Main Content Container-->
         <div class="container">
-            <div class="jumbotron d-none d-md-block">
-                <h1 class="display-4">Welcome to Pizza World!</h1>
+            <div class="jumbotron d-none d-md-block px-0">
+                <h1 class="display-4 m-0">Welcome to Ricky's Pizza!</h1>
             </div>
 
             <h2>Build your own pizza!</h2>
 
+            <!--Form Nav Bar-->
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#SizeAndCrustCard"><span class="badge badge-pill badge-dark">1</span> Size and crust</a>
+                    <a class="nav-link active" href="#SizeAndCrustCard"><span id="SCBadge" class="badge badge-pill badge-dark">0</span> Size and crust</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#CheeseAndSauceCard"><span class="badge badge-pill badge-dark">2</span> Cheese and Sauce</a>
+                    <a class="nav-link" href="#CheeseAndSauceCard"><span id="CSBadge" class="badge badge-pill badge-dark">0</span> Cheese and Sauce</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#ToppingsCard"><span class="badge badge-pill badge-dark">3</span> Toppings</a>
+                    <a class="nav-link" href="#ToppingsCard"><span id="TopBadge" class="badge badge-pill badge-dark">0</span> Toppings</a>
                 </li>
             </ul>
 
+            <!--Creation of the order form-->
+            <!--Everything inside gets submitted-->
+            <form method="POST" id="login_form" onchange="formChanged();" action="https://request-inspector.glitch.me">
 
-            <form method="POST" id="login_form" action="https://request-inspector.glitch.me">
+                <!--Size and Crust Card-->
+                <!--                -->
+                <!--                -->
                 <div class="card mt-1 mb-3" id="SizeAndCrustCard">
                     <div class="card-header bg-primary text-light">
                         Choose size and crust
@@ -66,7 +77,7 @@
                             <div class="card-header">
                                 Hand Tossed
                             </div>
-                            <span class="mx-4">Garlic seasoned crust with a rich, buttery taste.</span>
+                            <span class="mx-4 my-4">Garlic seasoned crust with a rich, buttery taste.</span>
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <div class="form-check">
@@ -118,6 +129,10 @@
                     </div>
                 </div>
 
+
+                <!--Cheese and Sauce Card-->
+                <!--                -->
+                <!--                -->
                 <div class="card mt-1 mb-3" id="CheeseAndSauceCard">
                     <div class="card-header bg-primary text-light">
                         Choose Cheese and Sauce
@@ -130,11 +145,12 @@
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <span class="mx-4">How Much?</span>
-                                    <select class="form-control custom-select" name="CheeseAmount">
-                                        <option>Light</option>
-                                        <option selected="selected">Normal</option>
-                                        <option>Extra</option>
-                                        <option>Double</option>
+                                    <select class="form-control custom-select" name="CheeseAmount" required="required">
+                                        <option selected="selected">None</option>
+                                        <option class="notEmpty">Light</option>
+                                        <option class="notEmpty">Normal</option>
+                                        <option class="notEmpty">Extra</option>
+                                        <option class="notEmpty">Double</option>
                                     </select>
                                 </li>
                             </ul>
@@ -147,19 +163,21 @@
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <span class="mx-4">What Type?</span>
-                                    <select class="form-control custom-select" name="SauceType">
-                                        <option>Tomato sauce</option>
-                                        <option selected="selected">Marinara sauce</option>
-                                        <option>BBQ sauce</option>
-                                        <option>Alfredo sauce</option>
+                                    <select class="form-control custom-select" name="SauceType" required="required">
+                                        <option selected="selected">None</option>
+                                        <option class="notEmpty">Tomato sauce</option>
+                                        <option class="notEmpty">Marinara sauce</option>
+                                        <option class="notEmpty">BBQ sauce</option>
+                                        <option class="notEmpty">Alfredo sauce</option>
                                     </select>
                                 </li>
                                 <li class="list-group-item">
                                     <span class="mx-4">How Much?</span>
-                                    <select class="form-control custom-select" name="SauceAmount">
-                                        <option>Light</option>
-                                        <option selected="selected">Normal</option>
-                                        <option>Extra</option>
+                                    <select class="form-control custom-select" name="SauceAmount" required="required">
+                                        <option selected="selected">None</option>
+                                        <option class="notEmpty">Light</option>
+                                        <option class="notEmpty">Normal</option>
+                                        <option class="notEmpty">Extra</option>
                                     </select>
                                 </li>
                             </ul>
@@ -174,7 +192,9 @@
                     </div>
                 </div>
 
-
+                <!--Toppings Card-->
+                <!--                -->
+                <!--                -->
                 <div class="card mt-1 mb-3" id="ToppingsCard">
                     <div class="card-header bg-primary text-light">
                         Choose Toppings
@@ -267,10 +287,56 @@
                         <button type="submit" class="btn btn-primary">Checkout <i class="fa fa-shopping-cart"></i></button>
                     </div>
                 </div>
-            </form>
 
+            </form>
+            <button onclick="scrollToTop();" id="BackToTop" class="btn btn-warning"><i class="fa fa-chevron-up"></i>Top</button>
         </div>
         <!-- Optional JavaScript -->
+        <script>
+            function scrollToTop(){
+                (function smoothscroll(){
+                    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                    if (currentScroll > 0) {
+                        window.requestAnimationFrame(smoothscroll);
+                        window.scrollTo (0,currentScroll - (currentScroll/15));
+                    }
+                })();
+            }
+            function formChanged() {
+                document.getElementById("SCBadge").textContent=document.querySelectorAll('#SizeAndCrustCard input[type="radio"]:checked').length;
+                document.getElementById("CSBadge").textContent=document.querySelectorAll('#CheeseAndSauceCard option.notEmpty:checked').length;
+                document.getElementById("TopBadge").textContent=document.querySelectorAll('#ToppingsCard input[type="checkbox"]:checked').length;
+            }
+        </script>
+
+        <script>
+            function getLatLong(){
+                var geocoder= new google.maps.Geocoder();
+                var lat = '';
+                var lng = '';
+                var address = document.getElementById("ZipCode").value;
+                if (address == ""){
+                    alert("You must input your Zip Code!");
+                    return;
+                }
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    console.log(results)
+                    if (status === "OK") {
+                        lat = results[0].geometry.location.lat();
+                        lng = results[0].geometry.location.lng();
+                        console.log(lat)
+                        console.log(lng)
+                        var url="https://www.google.com/maps/search/pizza/@" +lat+","+lng+",13z"
+                        var win = window.open(url, '_blank');
+                        win.focus();
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=INSERT_KEY_HERE" type="text/javascript"></script>
+
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
