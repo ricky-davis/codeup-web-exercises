@@ -40,13 +40,24 @@ alert("Your paycheck will be $" + paycheck + "!")
 // if ((cClass.students.length < cClass.maxEnrolled) && (student.classSchedule.indexOf(cClass.startTime) == -1)){
 //     cClass.enroll(student);
 // }
+var classSize = confirm("Is the class currently full?");
+var classSchedule = confirm("Does the class conflict with current Schedule?");
+var enrollmentStatus = !classSize && !classSchedule;
+alert("Student enrollment status:" + enrollmentStatus);
+
 
 // A product offer can be applied only if a person buys more than 2 items,
 // and the offer has not expired. Premium members do not need to buy a specific amount of products.
 // if ((customer.boughtItems.length > 2 && !customer.isPremium) && (offer.expiryDate > new Date().toLocaleString())){
 //     offer.applyTo(customer.boughtItems)
 // }
+var numberOfItems = prompt("How many items did you buy?");
+var offerExpiration = confirm("Is the offer valid?");
+var membership = confirm("Are you a premium member?");
 
+var couponStatus = (membership || Number(numberOfItems) > 2) && offerExpiration;
+
+alert("Can customer use this offer? " + couponStatus);
 
 
 var username = 'codeup';
