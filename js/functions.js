@@ -33,10 +33,7 @@ var random = Math.floor((Math.random() * 3) + 1);
  */
 
 function isTwo(num){
-    if (num ==2){
-        return true
-    }
-    return false
+    return n===2;
 }
 console.log(isTwo(random));
 /**
