@@ -1,3 +1,4 @@
+(function(){
 "use strict";
 var myName = 'Ricky'
 function sayHello(name){
@@ -76,3 +77,4 @@ alert("You should tip $" + calculateTip(percent,total));
 function applyDiscount(priceBeforeDiscount,discountPercent){
     return (1-discountPercent)*priceBeforeDiscount;
 }
+}());
