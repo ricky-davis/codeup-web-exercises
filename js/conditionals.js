@@ -184,7 +184,9 @@ function calculateTotal(luckyNumber, totalAmount){
     return discountedPrice;
 }
 
-
+var totalBill = prompt("What is your total bill?");
+var discounted = calculateTotal(luckyNumber, totalBill);
+alert("Your bill was: "+ totalBill+ ", Your lucky number was: " + luckyNumber+ ", and your final discounted price is: " + discounted+"!")
 
 
 
