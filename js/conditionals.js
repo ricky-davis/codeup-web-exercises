@@ -24,7 +24,7 @@ function isPositive(n){
 function userPrompt() {
     var userWant = confirm("Do you want to enter a number?");
     if (userWant) {
-        var userNum = prompt("Enter a number: ");
+        var userNum = parseInt(prompt("Enter a number: "));
         if (isNaN(userNum)) {
             alert(userNum + " is Not a Number!");
         } else {
