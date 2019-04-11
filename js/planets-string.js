@@ -24,11 +24,18 @@
      * list. You will need an opening AND closing <ul> tags around the entire
      * string, and <li> tags around each planet.
      */
-    var buffer="<ul>\n";
+
+    var brBuffer="";
     planetsArray.forEach(function(planet){
-       buffer+= "<li>"+planet+"</li>\n"
+        brBuffer+=planet+"</br>\n"
     });
-    buffer+="</ul>";
-    document.body.innerHTML+=buffer;
-    console.log(buffer);
+
+
+    var ulBuffer="<ul>\n";
+    planetsArray.forEach(function(planet){
+        ulBuffer+= "<li>"+planet+"</li>\n"
+    });
+    ulBuffer+="</ul>";
+    document.body.innerHTML+=ulBuffer;
+    console.log(ulBuffer);
 })();
