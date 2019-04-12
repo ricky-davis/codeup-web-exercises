@@ -74,9 +74,14 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
-    var books={
+    // var books=[
+    //     {"title":"The Salmon of Doubt","author":{"firstName":"Douglas","lastName":"Adams"}},
+    //     {"title":"Ender's Game","author":{"firstName":"Orson","lastName":"Card"}},
+    //     {"title":"Ender's Shadow","author":{"firstName":"Orson","lastName":"Card"}},
+    //     {"title":"Speaker For The Dead","author":{"firstName":"Orson","lastName":"Card"}},
+    //     {"title":"The Martian","author":{"firstName":"Andy","lastName":"Weir"}}
+    //     ];
 
-    }
     /**
      * TODO:
      * Loop through the books array and output the following information about
@@ -101,7 +106,18 @@
      *      ---
      *      ...
      */
+    var books=[];
+    books.push(createBook("The Salmon of Doubt","Douglas Adams"));
+    books.push(createBook("Ender's Game","Orson Card"));
+    books.push(createBook("Ender's Shadow","Orson Card"));
+    books.push(createBook("Speaker For The Dead","Orson Card"));
+    books.push(createBook("The Martian","Andy Weir"));
 
+    books.forEach(function(book){
+        console.log("Book #"+(books.indexOf(book)+1));
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+    });
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -112,5 +128,9 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+    function createBook(title,authorName){
+        var an =authorName.split(" ");
+        return {"title":title,"author":{"firstName":an[0],"lastName":an[1]}}
+    }
 
 })();
