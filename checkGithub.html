@@ -59,8 +59,9 @@
 
         function updatePage(){
             // Don't create the header if it already exists
+            var header;
             if (!document.getElementById('MFHeader')){
-                var header = document.createElement("h1");
+                header = document.createElement("h1");
                 header.id = "MFHeader";
                 header.innerText = "Missing Files:";
                 document.body.appendChild(header);
@@ -76,11 +77,16 @@
                 neededFileList.innerHTML="";
             }
             console.log(neededFileList);
+
+            // If data is not empty, build the list and populate it on the page.
             if (data !=='') {
-                // If data is not empty, build the list and populate it on the page.
-                for (var i = 0; i < neededFiles.length; i++) {
-                    var fileName = neededFiles[i];
-                    neededFileList.innerHTML += "<li>" + fileName + "</li>";
+                if(neededFileList>0) {
+                    for (var i = 0; i < neededFiles.length; i++) {
+                        var fileName = neededFiles[i];
+                        neededFileList.innerHTML += "<li>" + fileName + "</li>";
+                    }
+                }else{
+                    header.innerHTML="No missing files!";
                 }
             }else{
                 neededFileList.innerHTML="ERROR: Was not able to retrieve data from Github.";
