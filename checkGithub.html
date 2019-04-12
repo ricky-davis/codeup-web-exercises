@@ -15,7 +15,10 @@
         <button type="submit">Check your Github</button>
     </form>
     <script>
-        var neededFiles=['welcome.html',
+
+        // Build the list of files to check for.
+        var neededFiles=[
+            'welcome.html',
             'forms.html',
             'css/style.css',
             'css_selectors.html',
@@ -52,9 +55,10 @@
             'js/circle.js'
         ];
 
-        var data="";
+        var data;
 
         function updatePage(){
+            // Don't create the header if it already exists
             if (!document.getElementById('MFHeader')){
                 var header = document.createElement("h1");
                 header.id = "MFHeader";
@@ -62,6 +66,7 @@
                 document.body.appendChild(header);
             }
             var neededFileList;
+            // Dont create the list if it already exists. Otherwise, clear it.
             if (!document.getElementById('neededFileList')) {
                 neededFileList = document.createElement("ul");
                 neededFileList.id = "neededFileList";
@@ -72,6 +77,7 @@
             }
             console.log(neededFileList);
             if (data !=='') {
+                // If data is not empty, build the list and populate it on the page.
                 for (var i = 0; i < neededFiles.length; i++) {
                     var fileName = neededFiles[i];
                     neededFileList.innerHTML += "<li>" + fileName + "</li>";
@@ -81,14 +87,22 @@
             }
         }
         function checkGithub() {
+            // Get Username and Password
             var userName=document.getElementById('userName').value;
             var passWord=document.getElementById('passWord').value;
 
+            // Build the request URL
             var gitUrl = "https://api.github.com/repos/"+userName + "/codeup-web-exercises/git/trees/master?recursive=1";
+
+
             var request = new XMLHttpRequest();
             // Open a new connection, using the GET request on the URL endpoint
             request.open('GET', gitUrl, false);
+
+            // Set the header to include the Basic Authorization with your username and password
             request.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
+
+            // Process the data once it's loaded/returned.
             request.onload = function () {
                 // Begin accessing JSON data here
                 data = JSON.parse(this.response);
@@ -96,11 +110,13 @@
                     data["tree"].forEach(function(item){
                         if (item.type ==="blob"){
                             console.log(item.path);
+                            // Remove just the file we found from the list.
                             var index = neededFiles.indexOf(item.path);
                             if (index !== -1) neededFiles.splice(index, 1);
                         }
                     });
                 } else {
+                    //An error was thrown. Reset data to ''
                     console.log('error');
                     data='';
                 }
