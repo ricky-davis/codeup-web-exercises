@@ -5,13 +5,15 @@
         <title>Check Github</title>
     </head>
     <body>
-    <label for="userName">Username: </label>
-    <input id="userName" name="userName" type="text">
-    <br>
-    <label for="passWord">Password: </label>
-    <input id="passWord" name="passWord" type="password">
-    <br>
-    <button onclick="checkGithub()">Check your Github</button>
+    <form onsubmit="event.preventDefault(); checkGithub()">
+        <label for="userName">Username: </label>
+        <input id="userName" name="userName" type="text" required>
+        <br>
+        <label for="passWord">Password: </label>
+        <input id="passWord" name="passWord" type="password">
+        <br>
+        <button type="submit">Check your Github</button>
+    </form>
     <script>
         var neededFiles=['welcome.html',
             'forms.html',
@@ -62,6 +64,7 @@
                 if (request.status >= 200 && request.status < 400) {
                     data["tree"].forEach(function(item){
                         if (item.type ==="blob"){
+                            console.log(item.path);
                             var index = neededFiles.indexOf(item.path);
                             if (index !== -1) neededFiles.splice(index, 1);
                         }
@@ -86,8 +89,8 @@
             console.log(neededFileList);
             if (data !=='') {
                 for (var i = 0; i < neededFiles.length; i++) {
-                    var file = neededFiles[i];
-                    neededFileList.innerHTML += "<li>" + file + "</li>";
+                    var fileName = neededFiles[i];
+                    neededFileList.innerHTML += "<li>" + fileName + "</li>";
                 }
             }else{
                 neededFileList.innerHTML="ERROR: Was not able to retrieve data from Github.";
@@ -100,6 +103,7 @@
             var gitUrl = "https://api.github.com/repos/"+userName + "/codeup-web-exercises/git/trees/master?recursive=1";
 
             iterTree(checkFiles, gitUrl,userName, passWord);
+            return false;
         }
     </script>
     </body>
