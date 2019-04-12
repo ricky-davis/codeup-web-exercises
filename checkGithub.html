@@ -81,11 +81,21 @@
         }
 
         function checkFiles(){
-            var header = document.createElement("h1");
-            header.innerText = "Missing Files:";
-            document.body.appendChild(header);
-            var neededFileList=document.createElement("ul");
-            document.body.appendChild(neededFileList);
+            if (!document.getElementById('MFHeader')){
+                var header = document.createElement("h1");
+                header.id = "MFHeader";
+                header.innerText = "Missing Files:";
+                document.body.appendChild(header);
+            }
+            var neededFileList;
+            if (!document.getElementById('neededFileList')) {
+                neededFileList = document.createElement("ul");
+                neededFileList.id = "neededFileList";
+                document.body.appendChild(neededFileList);
+            }else{
+                neededFileList=document.getElementById('neededFileList');
+                neededFileList.innerHTML="";
+            }
             console.log(neededFileList);
             if (data !=='') {
                 for (var i = 0; i < neededFiles.length; i++) {
