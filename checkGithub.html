@@ -5,7 +5,7 @@
         <title>Check Github</title>
     </head>
     <body>
-    <form onsubmit="event.preventDefault(); checkGithub()">
+    <form onsubmit="event.preventDefault(); checkGithub()" method="post">
         <label for="userName">Username: </label>
         <input id="userName" name="userName" type="text" required>
         <br>
@@ -53,34 +53,8 @@
         ];
 
         var data="";
-        function iterTree(callback,url,userName,passWord){
-            var request = new XMLHttpRequest();
-            // Open a new connection, using the GET request on the URL endpoint
-            request.open('GET', url, false);
-            request.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
-            request.onload = function () {
-                // Begin accessing JSON data here
-                data = JSON.parse(this.response);
-                if (request.status >= 200 && request.status < 400) {
-                    data["tree"].forEach(function(item){
-                        if (item.type ==="blob"){
-                            console.log(item.path);
-                            var index = neededFiles.indexOf(item.path);
-                            if (index !== -1) neededFiles.splice(index, 1);
-                        }
-                    });
-                } else {
-                    console.log('error')
-                }
-            };
-            // Send request
-            request.send();
-            if(callback !==undefined){
-                callback();
-            }
-        }
 
-        function checkFiles(){
+        function updatePage(){
             if (!document.getElementById('MFHeader')){
                 var header = document.createElement("h1");
                 header.id = "MFHeader";
@@ -111,8 +85,30 @@
             var passWord=document.getElementById('passWord').value;
 
             var gitUrl = "https://api.github.com/repos/"+userName + "/codeup-web-exercises/git/trees/master?recursive=1";
-
-            iterTree(checkFiles, gitUrl,userName, passWord);
+            var request = new XMLHttpRequest();
+            // Open a new connection, using the GET request on the URL endpoint
+            request.open('GET', gitUrl, false);
+            request.setRequestHeader("Authorization", "Basic " + btoa(userName + ":" + passWord));
+            request.onload = function () {
+                // Begin accessing JSON data here
+                data = JSON.parse(this.response);
+                if (request.status >= 200 && request.status < 400) {
+                    data["tree"].forEach(function(item){
+                        if (item.type ==="blob"){
+                            console.log(item.path);
+                            var index = neededFiles.indexOf(item.path);
+                            if (index !== -1) neededFiles.splice(index, 1);
+                        }
+                    });
+                } else {
+                    console.log('error');
+                    data='';
+                }
+            };
+            // Send request
+            request.send();
+            
+            updatePage();
             return false;
         }
     </script>
