@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MapBox Maps API</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <script src='js/keys.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        #map{
+            margin:0 auto;
+            width:80%;
+            height:400px;
+        }
+        .slidecontainer{
+            text-align:center;
+        }
+        .slidecontainer input{
+            width:80%;
+        }
+        h1{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+<h1>Favorite Restaurants</h1>
+<div class="slidecontainer">
+    <input type="range" min="8" max="20" value="10" class="slider" id="zoomRange">
+</div>
+<div id='map'></div>
+<script>
+    mapboxgl.accessToken = mapBoxToken;
+    function geocode(search, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function(data) {
+                return data.features[0].center;
+            });
+    }
+
+    var slider = document.getElementById("zoomRange");
+    slider.oninput = function() {
+        map.setZoom(this.value);
+    };
+    function reverseGeocode(coordinates, token) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
+            .then(function(res) {
+                return res.json();
+            })
+            // to get all the data from the request, comment out the following three lines...
+            .then(function(data) {
+                return data.features[0].place_name;
+            });
+    }
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 10
+    });
+
+    map.on('zoom', function() {
+        slider.value =map.getZoom();
+    });
+    var favRestaurants = [
+        {
+            "Name":"Seabrook Waffle Company",
+            "Address":"1402 5th St, Seabrook, TX 77586"
+        },
+        {
+            "Name":"Yuki's Japanese Restaurant",
+            "Address":"2389 Pass Rd, Biloxi, MS 39531"
+        },
+        {
+            "Name":"Station Cafe",
+            "Address":"108 King William St, San Antonio, TX 78204"
+        },
+        {
+            "Name":"Kimura",
+            "Address":"152 E Pecan St #102, San Antonio, TX 78205"
+        }
+    ];
+    var animID;
+    var curMarkerOrigLoc;
+    var curMarker;
+    var restaurantPopup;
+    function animateMarker(timestamp) {
+        var radius = 0.1/((Math.pow((map.getZoom()),3)-map.getZoom()));
+        curMarker.setLngLat([
+            curMarkerOrigLoc[0],
+            Math.sin(timestamp / 100) * radius + curMarkerOrigLoc[1]
+        ]);
+        curMarker.addTo(map);
+        animID = requestAnimationFrame(animateMarker);
+    }
+
+    var firstRun=true;
+    var displayLength=5000;
+    function iterRestaurants(){
+        favRestaurants.forEach(function(myLocation,index){
+            setTimeout(
+                function() {
+                    geocode(myLocation.Address, mapBoxToken).then(function (result) {
+
+                        if (index===0 && firstRun){
+                            map.setCenter(result);
+                        }else{
+                            map.flyTo({center:result});
+                        }
+                        curMarkerOrigLoc = result;
+                        if(firstRun) {
+                            //If never run before, create the marker and popup
+                            curMarker = new mapboxgl.Marker()
+                                .setLngLat(result)
+                                .addTo(map);
+                            restaurantPopup = new mapboxgl.Popup()
+                                .setHTML("<p>" + myLocation.Name + "</p>" +
+                                         "<p>" + myLocation.Address + "</p>"
+                                );
+                            curMarker.setPopup(restaurantPopup);
+                            //Set the marker and popup as properties on the Restaurant
+                            myLocation["marker"] = curMarker;
+                            myLocation["restaurantPopup"] = restaurantPopup;
+                        }else{
+                            //If it's not the first run, grab the current restaurant's marker and popup
+                            curMarker = myLocation.marker;
+                            restaurantPopup = myLocation.restaurantPopup;
+                        }
+                        // Start the animation
+                        animID = requestAnimationFrame(animateMarker);
+
+                        if (index===favRestaurants.length-1 && firstRun){
+                            // If we're at the end of the restaurant list, the first run is over
+                            console.log("Finished First");
+                            firstRun=false;
+                        }
+                        // Set a timer to cancel the animation in 2.5 seconds
+                        setTimeout(function(){
+                            cancelAnimationFrame(animID);
+                        },5000);
+                    });
+                }, displayLength * index // Offset this function by (displayLength * index) milliseconds
+            );
+        })
+    }
+    // Run immediately
+    iterRestaurants();
+
+    //Set up to run every (displayLength*favRestaurants.length) milliseconds
+    setInterval(iterRestaurants,displayLength*favRestaurants.length);
+
+</script>
+</body>
+</html>
