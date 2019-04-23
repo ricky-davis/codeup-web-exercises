@@ -2,6 +2,10 @@
 
 $(document).ready(function() {
 
-    // INSERT JAVASCRIPT CODE SAMPLE HERE
-    alert("The DOM has finished loading");
+    var h1 = $('h1');
+    var li = $('li');
+    var p =  $('p');
+    var selectors = $('h1, p, li');
+    li.css('font-size', '20px');
+    alert(selectors.text());
 });
