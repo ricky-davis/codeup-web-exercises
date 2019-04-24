@@ -18,6 +18,9 @@
                 }
                 return true;
             }
+
+            var Speed=200;
+
             function KonamiFunc() {
                 var snd = new Audio("sound/item.wav");
                 snd.play();
@@ -27,45 +30,44 @@
                 var snd = new Audio("sound/wilhelm.wav");
                 snd.play();
             }
-            var Speed=200;
             function DiscoFunc(){
-                console.log("DISCO Achieved!");
-                setTimeout(function(){randomBGColor()},Speed);
-            }
-            function MakeItSoFunc(){
-                Speed=50;
-            }
-            function randomBGColor(){
                 var red=(Math.random()*200)+55;
                 var green=(Math.random()*200)+55;
                 var blue=(Math.random()*200)+55;
                 $("body").css({
                     "background-color":"rgb("+red+","+green+","+blue+")"
                 });
-                setTimeout(function(){randomBGColor()},Speed);
+                setTimeout(function(){DiscoFunc()},Speed);
+            }
+            function MakeItSoFunc(){
+                Speed=50;
             }
             function GiveYouUpFunc(){
-                window.open("https://youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&showinfo=0&autohide=1",
-                    "newWin", "width="+(screen.availWidth+100)+",height="+(screen.availHeight+100));
-
+                window.open("https://youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&showinfo=0&autohide=1", "_blank");
             }
-            var cheatCodes=[
-                [[38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13],KonamiFunc],
-                [[68, 73, 83, 67, 79],DiscoFunc],
-                [[77, 65, 75, 69, 73, 84, 83, 79],MakeItSoFunc],
-                [[71, 73, 86, 69, 89, 79, 85, 85, 80],GiveYouUpFunc],
-                [[87, 73, 76, 72, 69, 76, 77],WilhelmFunc]
+
+            // List of cheat codes with their functions
+            var cheatCodes = [
+                {name:"Konami",fn:KonamiFunc,code:[38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]},
+                {name:"DISCO",fn:DiscoFunc,code:[68, 73, 83, 67, 79]},
+                {name:"MAKEITSO",fn:MakeItSoFunc,code:[77, 65, 75, 69, 73, 84, 83, 79]},
+                {name:"GIVEYOUUP",fn:GiveYouUpFunc,code:[71, 73, 86, 69, 89, 79, 85, 85, 80]},
+                {name:"WILHELM",fn:WilhelmFunc,code:[87, 73, 76, 72, 69, 76, 77]}
             ];
             var keyArr=[];
             $(document).keyup(function(event){
+                // Add to end of array
                 keyArr.push(event.keyCode);
+                // Don't let array get longer than 50 keyCodes
                 if (keyArr.length>50){
                     keyArr.shift();
                 }
                 console.log(keyArr);
-                cheatCodes.forEach(function(cheatArr){
-                    if (arraysEqual(keyArr.slice(-(cheatArr[0].length)),cheatArr[0])){
-                        cheatArr[1]();
+
+                // If the key combos match what's in our cheatCodes array, call the function specified
+                cheatCodes.forEach(function(cheatOBJ){
+                    if (arraysEqual(keyArr.slice(-(cheatOBJ.code.length)),cheatOBJ.code)){
+                        cheatOBJ.fn();
                     }
                 })
             });

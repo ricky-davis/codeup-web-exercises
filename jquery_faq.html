@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Jquery FAQ</title>
+        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .invisible{
+                display:none
+            }
+        </style>
+    </head>
+    <body>
+        <button id="toggle">Toggle FAQ Answers</button>
+        <dl>
+            <dt>Do I need to make reservations to visit Olympic National Park?</dt>
+            <dd class="invisible">No, you don't need reservations to visit Olympic National Park. However, if you plan to spend the night in or around the park, you should have reservations for lodging, camping, or backpacking.</dd>
+            <hr>
+            <dt>Where is Olympic National Park located?</dt>
+            <dd class="invisible">Olympic National Park is located in northwestern Washington.</dd>
+            <hr>
+            <dt>What are some popular activities at Olympic?</dt>
+            <dd class="invisible">Nature lover’s come here to hike, bike, and take photographs.  Other activities include boating, fishing, and water sports.</dd>
+            <hr>
+            <dt>When is the best time of year to visit Olympic National Park?</dt>
+            <dd class="invisible">It depends what you're looking for! While most people visit during summer, there are unique things things to see when visiting at other times throughout the year. You can find more information on our Plan Your Visit page.</dd>
+            <hr>
+            <dt>What is the weather at Olympic National Park like?</dt>
+            <dd class="invisible">Because of this remarkably diverse landscape, climatic changes within the park are abrupt. The western side of the park has the wettest weather in the United States, averaging nearly 12 to 14 feet of precipitation each year. The eastern side of the park, which lies in the rain shadow of the mountains, is the driest area on the Pacific Coast north of Los Angeles.</dd>
+            <hr>
+            <dt>How did Yellowstone get its name?</dt>
+            <dd class="invisible">Yellowstone National Park is named after the Yellowstone River, the major river running through the park. According to French-Canadian trappers in the 1800s, they asked the name of the river from the Minnetaree tribe, who live in what is now eastern Montana. They responded “Mi tse a-da-zi,” which literally translates as “Rock Yellow River.” The trappers translated this into French as “Roche Jaune” or “Pierre Jaune.” In 1797, explorer-geographer David Thompson used the English translation—“Yellow Stone.” Lewis and Clark called the Yellowstone River by the French and English forms. Subsequent use formalized the name as “Yellowstone.</dd>
+            <hr>
+            <dt>Is Yellowstone the largest national park?</dt>
+            <dd class="invisible">No. More than half of Alaska’s national park units are larger, including Wrangell–St. Elias National Park and Preserve, which is the largest unit (13 million acres) in the National Park System. Until 1994, Yellowstone (at 2.2 million acres) was the largest national park in the contiguous United States. That year Death Valley National Monument was expanded and became a national park—it has more than 3 million acres.</dd>
+            <hr>
+            <dt>Is Yellowstone the most visited national park?</dt>
+            <dd class="invisible">Yellowstone is in the top five national parks for number of recreational visitors. Great Smoky Mountains National Park often has the most. Visit https://irma.nps.gov/Stats/ to view up-to-date statistics for all national parks.</dd>
+            <hr>
+            <dt>What is the difference between a national park and a national forest?</dt>
+            <dd class="invisible">National parks are administered by the Department of the Interior and national forests by the Department of Agriculture. The National Park Service is mandated to preserve resources unimpaired, while the Forest Service is mandated to wisely manage resources for many sustainable uses. Six national forests surround Yellowstone National Park.</dd>
+            <hr>
+            <dt>How many rangers work in Yellowstone?</dt>
+            <dd class="invisible">Approximately 773 people work for the National Park Service during the peak summer season. Approximately 330 are permanent, year-round employees. Park rangers work in education, resource management, law enforcement, emergency medical services, and backcountry operations. Other employees specialize in research, maintenance, management, administration, trail maintenance, fire management, and fee collection.</dd>
+            <hr>
+        </dl>
+        <script src="js/jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+               $('#toggle').click(function(e){
+                   $("dd").toggleClass("invisible");
+               })
+            });
+        </script>
+    </body>
+</html>
