@@ -12,6 +12,11 @@
         </style>
     </head>
     <body>
+        <h2 hidden>Would you like to register?</h2>
+        <div>
+            <h1>Would you like to sign up for our newsletter?</h1>
+            <span id="hideNewsletterPrompt">x</span>
+        </div>
         <button id="toggle">Toggle FAQ Answers</button>
         <dl>
             <dt>Do I need to make reservations to visit Olympic National Park?</dt>
@@ -45,20 +50,20 @@
             <dd class="invisible">Approximately 773 people work for the National Park Service during the peak summer season. Approximately 330 are permanent, year-round employees. Park rangers work in education, resource management, law enforcement, emergency medical services, and backcountry operations. Other employees specialize in research, maintenance, management, administration, trail maintenance, fire management, and fee collection.</dd>
             <hr>
         </dl>
-        <ul>
-            <h3>Park 1</h3>
+        <h3>Park 1</h3>
+        <ul hidden>
             <li>Park1 Fact1</li>
             <li>Park1 Fact2</li>
             <li>Park1 Fact3</li>
         </ul>
-        <ul>
-            <h3>Park 2</h3>
+        <h3>Park 2</h3>
+        <ul hidden>
             <li>Park2 Fact1</li>
             <li>Park2 Fact2</li>
             <li>Park2 Fact3</li>
         </ul>
-        <ul>
-            <h3>Park 3</h3>
+        <h3>Park 3</h3>
+        <ul hidden>
             <li>Park3 Fact1</li>
             <li>Park3 Fact2</li>
             <li>Park3 Fact3</li>
@@ -68,6 +73,9 @@
         <script src="js/jquery.js"></script>
         <script>
             $(document).ready(function(){
+                $('#hideNewsletterPrompt').click(function(){
+                   $(this).parent().hide();
+                });
                 $('#toggle').click(function(e){
                     $("dd").toggleClass("invisible");
                 });
@@ -77,11 +85,15 @@
                     });
                 });
                 $('h3').click(function(e){
-                    $(this).parent().children().css('font-weight','bold');
+                    $(this).next().children().css('font-weight','bold');
+                    $(this).next().slideToggle();
                 });
                 $('li').click(function(e){
                     $(this).parent().children('li').first().css('color','blue');
                 });
+                setTimeout(function(){
+                    $('h2').fadeIn();
+                },8000);
             });
         </script>
     </body>
