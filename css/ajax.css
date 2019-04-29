@@ -18,7 +18,26 @@ body{
 main{
     text-align:center;
 }
-.created_at{
+.postFooter{
+    float:left;
+}
+.categoryTag:hover{
+    cursor:pointer;
+    color:orangered !important;
+    text-decoration: underline !important;
+}
+.created_at, .categoryTag{
+    display:inline-block;
     font-size:0.75em;
     color:var(--subdued-color);
+}
+.card-header{
+    cursor:pointer;
+}
+#search{
+    position:fixed;
+    top:1em;
+    right:1em;
+    float:right;
+    background-color:red;
 }

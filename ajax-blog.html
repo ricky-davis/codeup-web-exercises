@@ -14,42 +14,84 @@
         <div id="posts" class="col-8 mx-auto my-4">
 
         </div>
+        <div id="search">
+            <input id="searchInput" type="text">
+        </div>
 
         <script>
             (function() {
                 "use strict";
-                // TODO: Create an ajax GET request for /data/inventory.json
+                var posts;
+                function filterPosts(e){
+                    console.log(this.value);
+                    var filterStr=this.value.split(" ");
+                    $.each($('.post'),function(index,element){
+                        console.log(filterStr.length);
+                        for(var i=0;i<filterStr.length;i++){
+                            var curStr = filterStr[i]
+                            if(!element.innerHTML.toLowerCase().includes(curStr.toLowerCase())){
+                                element.hidden="hidden";
+                                console.log(curStr);
+                                break;
+                            }else{
+                                element.hidden=false;
+                            }
+                        }
+                    })
+                }
                 function updatePosts() {
                     $.get("data/blog.json").done(function (data) {
-                        // do something with the data
-                        console.log(data);
+                        var tempPosts = document.createElement("div");
                         data.forEach(function(post){
                             var postEl = document.createElement("div");
-                            postEl.className = 'card mb-3';
+                            postEl.className = 'card mb-3 post';
                             var postTitle=document.createElement("div");
                             postTitle.className="card-header";
-                            postTitle.innerText=post.title;
+                            postTitle.innerText=post["title"];
                             var postBody=document.createElement('p');
                             postBody.className="postBody mx-3 mt-1";
-                            postBody.innerText=post.content;
+                            postBody.innerText=post["content"];
+                            var postFooter=document.createElement('div');
+                            postFooter.className="postFooter mb-2";
                             var created_at=document.createElement('span');
                             created_at.className="created_at mx-3";
-                            created_at.innerText=post.date;
+                            created_at.innerText=post["date"];
 
-                            postEl.append(postTitle,postBody,created_at);
-                            $("#posts").append(postEl);
+                            postEl.append(postTitle,postBody,postFooter);
+                            postFooter.append(created_at);
+                            post["categories"].forEach(function(tag){
+                                var tagEl = document.createElement('a');
+                                tagEl.className="categoryTag mx-2";
+                                tagEl.innerText="#"+tag;
+                                postFooter.append(tagEl);
+                            });
+                            $(tempPosts).append(postEl);
+
                         });
+                        if(tempPosts.innerHTML !== posts){
+                            posts = tempPosts.innerHTML;
+                            $("#posts").html(posts);
+                        }
                     });
                 }
                 updatePosts();
-                // TODO: Take the data from inventory.json and append it to the products table
-                //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-                //             its contents and fields
-                //       HINT: You will want to target #insertProducts for your new HTML elements
+
+                setInterval(updatePosts,5000);
+                var searchInput = $("#searchInput");
+                searchInput.on('input',filterPosts);
+
+                $("#posts").on('click',".card-header",function(){
+                    $(this).next().slideToggle(200);
+                }).on('click',".categoryTag",function(e){
+                    if(searchInput[0].value !==""){
+                        searchInput[0].value+=" "
+                    }
+                    searchInput[0].value += this.innerText;
+                    searchInput.trigger("input");
+                });
             })();
         </script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
