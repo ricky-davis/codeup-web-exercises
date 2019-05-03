@@ -1,0 +1,20 @@
+body{
+    background-color:lightskyblue;
+    text-align:center;
+}
+.dayForecast{
+    background-color:#ddd;
+    text-align:center;
+    border:1px solid black;
+    padding-bottom:0.5em;
+}
+.temperature{
+    text-align:center;
+    margin-bottom:-7px;
+}
+.weatherIcon{
+    width:30%;
+}
+.compass{
+    width:30px;
+}

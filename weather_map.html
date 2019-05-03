@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Required meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+        <!--Custom CSS -->
+        <link rel="stylesheet" href="css/weather.css">
+        <title>Weather Map</title>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <h1>Weather Application</h1>
+        <h2>San Antonio</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-3 ml-auto dayForecast">
+                    <h4 class="dayName"></h4>
+                    <h3 class="temperature"></h3>
+                    <img class="weatherIcon" src="" alt="">
+                    <div class="forecast"></div>
+                    <div><strong>Humidity: </strong><span class="humidity"></span></div>
+                    <div><strong>Wind: </strong><span class="wind"></span><img class="compass" src=""></div>
+                    <div><strong>Pressure: </strong><span class="pressure"></span></div>
+                </div>
+                <div class="col-3 dayForecast">
+                    <h4 class="dayName"></h4>
+                    <h3 class="temperature"></h3>
+                    <img class="weatherIcon" src="" alt="">
+                    <div class="forecast"></div>
+                    <div><strong>Humidity: </strong><span class="humidity"></span></div>
+                    <div><strong>Wind: </strong><span class="wind"></span><img class="compass" src=""></div>
+                    <div><strong>Pressure: </strong><span class="pressure"></span></div>
+                </div>
+                <div class="col-3 mr-auto dayForecast">
+                    <h4 class="dayName"></h4>
+                    <h3 class="temperature"></h3>
+                    <img class="weatherIcon" src="" alt="">
+                    <div class="forecast"></div>
+                    <div><strong>Humidity: </strong><span class="humidity"></span></div>
+                    <div><strong>Wind: </strong><span class="wind"></span><img class="compass" src=""></div>
+                    <div><strong>Pressure: </strong><span class="pressure"></span></div>
+                </div>
+            </div>
+        </div>
+        <script src="js/keys.js"></script>
+        <script>
+            function getDayName(dateStr, locale)
+            {
+                var date = new Date(dateStr);
+                return date.toLocaleDateString(locale, { weekday: 'long' });
+            }
+            var prebuilt={
+                "clear-day":{
+                    icon:"img/WeatherSVG/Sun.svg"
+                },
+                "clear-night":{
+                    icon:"img/WeatherSVG/Moon.svg"
+                },
+                "rain":{
+                    icon:"img/WeatherSVG/Cloud-Rain.svg"
+                },
+                "snow":{
+                    icon:"img/WeatherSVG/Cloud-Snow-Alt.svg"
+                },
+                "sleet":{
+                    icon:"img/WeatherSVG/Cloud-Snow.svg"
+                },
+                "wind":{
+                    icon:"img/WeatherSVG/Wind.svg"
+                },
+                "fog":{
+                    icon:"img/WeatherSVG/Cloud-Fog.svg"
+                },
+                "cloudy":{
+                    icon:"img/WeatherSVG/Cloud.svg"
+                },
+                "partly-cloudy-day":{
+                    icon:"img/WeatherSVG/Cloud-Sun.svg"
+                },
+                "partly-cloudy-night":{
+                    icon:"img/WeatherSVG/Cloud-Moon.svg"
+                }
+            };
+            function dayBuilder(data){
+                var buffer={};
+                buffer.temperature=Math.round(data.temperatureHigh)+"°/"+Math.round(data.temperatureLow)+"°";
+                buffer.icon=prebuilt[data.icon].icon;
+                buffer.summary = data.summary;
+                buffer.humidity = data.humidity;
+                buffer.wind = data.windSpeed;
+                buffer.windBearing = data.windBearing;
+                buffer.pressure = data.pressure;
+                return buffer
+            }
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/"+darkSkyAPI+"/29.4241,-98.4936").done(function(data) {
+                for(var index=0;index<data.daily.data.length;index++){
+                    if(index >= 3){break}
+
+                    var day = data.daily.data[index];
+                    console.log(day);
+                    var curDayForecast = dayBuilder(day);
+                    var curDay = $('.dayForecast')[index];
+                    var dateObject = new Date(day.time * 1000);
+                    $(curDay).find('.dayName').text(getDayName(dateObject,'us-US'));
+                    $(curDay).find('.temperature').text(curDayForecast.temperature);
+                    $(curDay).find('.weatherIcon').attr("src",curDayForecast.icon);
+                    //$(curDay).find('.forecast').text(curDayForecast.summary);
+                    $(curDay).find('.humidity').text(curDayForecast.humidity*100);
+                    $(curDay).find('.wind').text(curDayForecast.wind);
+                    $(curDay).find('.compass').attr("src","img/codeup-arrow.png").css('transform','rotate('+(curDayForecast.windBearing-45)+'deg)');
+                    $(curDay).find('.pressure').text(curDayForecast.pressure);
+
+                }
+            });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
