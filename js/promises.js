@@ -11,7 +11,7 @@ wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
 let url="https://api.github.com";
 const getLastCommit = userName =>{
-    return fetch(url+"/users/"+userName+"/events", {headers: {'Authorization': 'token c1e7faff5f708526854fa5ebdd52b0fcb5caed63'}}).then(result=>{
+    return fetch(url+"/users/"+userName+"/events", {headers: {'Authorization': `token ${gitHubToken}`}}).then(result=>{
         if (result.ok){
             return result.json().then(json => {
                 return json[0].created_at;
