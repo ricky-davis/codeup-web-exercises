@@ -35,3 +35,28 @@ const users = [
         yearsOfExperience: 9
     }
 ];
+
+users.filter(user =>{
+    if(user.languages.length>=3){
+        return user;
+    }
+});
+
+users.map(user=>{
+    return user.email;
+});
+let totalYears = users.reduce((total,user)=>{
+    return total+user.yearsOfExperience;
+},0);
+let average = totalYears/users.length;
+
+users.reduce((longest,user)=>{
+    if(user.email.length > longest.length){
+        longest=user.email;
+    }
+    return longest;
+},"a");
+
+users.reduce((names,user)=>{
+   return names+user.name+", "
+},"Your instructors are: ");
