@@ -60,3 +60,12 @@ users.reduce((longest,user)=>{
 users.reduce((names,user)=>{
    return names+user.name+", "
 },"Your instructors are: ");
+
+users.reduce((languages,user)=>{
+    user.languages.forEach(language=>{
+        if (!languages.includes(language)){
+            languages.push(language);
+        }
+    });
+    return languages
+},[]);
