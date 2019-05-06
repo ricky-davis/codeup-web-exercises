@@ -45,10 +45,10 @@ users.filter(user =>{
 users.map(user=>{
     return user.email;
 });
-let totalYears = users.reduce((total,user)=>{
+
+let average = users.reduce((total,user)=>{
     return total+user.yearsOfExperience;
-},0);
-let average = totalYears/users.length;
+},0)/users.length;
 
 users.reduce((longest,user)=>{
     if(user.email.length > longest.length){
