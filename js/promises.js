@@ -14,7 +14,14 @@ const getLastCommit = userName =>{
     return fetch(url+"/users/"+userName+"/events", {headers: {'Authorization': `token ${gitHubToken}`}}).then(result=>{
         if (result.ok){
             return result.json().then(json => {
-                return json[0].created_at;
+                let evData;
+                json.forEach(event=>{
+                    if(event.type==="PushEvent"){
+                        evData=event;
+                        return event;
+                    }
+                })
+                return evData.created_at;
             });
         }
     }).catch(reject=>{console.log(reject)});
